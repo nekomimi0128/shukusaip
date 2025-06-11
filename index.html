@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHUKUSAI - 児童情報閲覧</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SHUKUSAI 児童情報閲覧システム</h1>
+        </header>
+
+        <div id="viewSection">
+            <h2>児童情報閲覧</h2>
+            <form id="loginForm">
+                <input type="text" id="loginID" placeholder="児童ID" required>
+                <input type="password" id="loginPassword" placeholder="パスワード" required>
+                <button type="submit">ログイン</button>
+            </form>
+
+            <div id="childInfo" style="display:none;">
+                <h3 id="childNameDisplay"></h3>
+                <div id="videoContainer"></div>
+                <div id="textNotes"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/view.js"></script>
+</body>
+</html>
