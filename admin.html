@@ -45,6 +45,7 @@
 
             <div class="section">
                 <h2>緊急SOS管理</h2>
+                <button id="subscribeButton">通知購読</button>
                 <button id="emergencySOSButton" class="sos-button">緊急SOS発信</button>
                 <div id="sosLog"></div>
             </div>
@@ -56,6 +57,8 @@
         </div>
     </div>
 
-    <script src="js/admin.js"></script>
+    <!-- プッシュ通知スクリプト追加 -->
+    <script src="/push-notification.js"></script>
+    <script src="/js/admin.js"></script>
 </body>
 </html>
