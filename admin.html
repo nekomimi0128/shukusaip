@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHUKUSAI - 管理システム</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SHUKUSAI 管理システム</h1>
+        </header>
+
+        <div id="adminLoginSection">
+            <h2>管理者ログイン</h2>
+            <form id="adminLoginForm">
+                <input type="text" id="adminID" placeholder="管理者ID" required>
+                <input type="password" id="adminPassword" placeholder="パスワード" required>
+                <button type="submit">ログイン</button>
+            </form>
+        </div>
+
+        <div id="adminPanel" style="display:none;">
+            <div class="section">
+                <h2>児童情報登録</h2>
+                <form id="childRegistrationForm">
+                    <input type="text" id="childName" placeholder="児童名" required>
+                    <button type="submit">児童情報生成</button>
+                </form>
+                <div id="generatedCredentials"></div>
+            </div>
+
+            <div class="section">
+                <h2>ファイルアップロード</h2>
+                <form id="fileUploadForm">
+                    <select id="childSelect" required>
+                        <!-- 動的に児童リスト追加 -->
+                    </select>
+                    <input type="file" id="fileUpload" accept="video/*,image/*,application/pdf" required>
+                    <input type="text" id="fileDescription" placeholder="ファイルの説明">
+                    <button type="submit">アップロード</button>
+                </form>
+            </div>
+
+            <div class="section">
+                <h2>緊急SOS管理</h2>
+                <button id="emergencySOSButton" class="sos-button">緊急SOS発信</button>
+                <div id="sosLog"></div>
+            </div>
+
+            <div class="section">
+                <h2>システム設定</h2>
+                <button id="changePasswordBtn">管理者パスワード変更</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
