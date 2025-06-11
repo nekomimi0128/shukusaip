@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>SHUKUSAI 児童情報閲覧システム</h1>
+            <h1>SHUKUSAI 児童情報システム</h1>
         </header>
 
         <div id="viewSection">
@@ -24,10 +24,15 @@
                 <h3 id="childNameDisplay"></h3>
                 <div id="videoContainer"></div>
                 <div id="textNotes"></div>
+                
+                <!-- 通知購読ボタン追加 -->
+                <button id="subscribeButton">緊急通知を受け取る</button>
             </div>
         </div>
     </div>
 
-    <script src="js/view.js"></script>
+    <!-- プッシュ通知スクリプト追加 -->
+    <script src="/push-notification.js"></script>
+    <script src="/js/view.js"></script>
 </body>
 </html>
