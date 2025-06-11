@@ -1,56 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const pushNotification = new PushNotification();
+    // モック児童データベース
+    const mockChildDatabase = {};
 
-    // 管理者ログイン処理
-    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+    // 児童情報生成
+    document.getElementById('childRegistrationForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const adminID = document.getElementById('adminID').value;
-        const adminPassword = document.getElementById('adminPassword').value;
+        const childName = document.getElementById('childName').value;
+        
+        // ランダムなID/PW生成
+        const generateRandomString = (length) => 
+            Math.random().toString(36).substring(2, length + 2).toUpperCase();
+        
+        const generatedID = generateRandomString(7);
+        const generatedPassword = generateRandomString(7);
 
-        if (adminID === 'admin' && adminPassword === 'shukusai') {
-            document.getElementById('adminLoginSection').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
-            initializeAdminPanel();
-        } else {
-            alert('ログイン失敗');
-        }
+        // モックデータベースに保存
+        mockChildDatabase[generatedID] = {
+            name: childName,
+            password: generatedPassword,
+            videos: [],
+            notes: []
+        };
+
+        // 生成した認証情報を表示
+        const credentialsDisplay = document.getElementById('generatedCredentials');
+        credentialsDisplay.innerHTML = `
+            <p>児童名: ${childName}</p>
+            <p>ID: ${generatedID}</p>
+            <p>パスワード: ${generatedPassword}</p>
+            <p style="color:red;">※ この情報を保護者に必ず伝えてください</p>
+        `;
     });
 
-    // 通知購読ボタン
-    document.getElementById('subscribeButton').addEventListener('click', async () => {
-        await pushNotification.subscribeUser();
-    });
-
-    // 緊急SOS発信ボタン
-    document.getElementById('emergencySOSButton').addEventListener('click', async () => {
-        try {
-            const response = await fetch('/send-emergency-notification', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    message: '緊急事態が発生しました！至急確認してください。' 
-                })
-            });
-            const result = await response.json();
-            
-            // SOSログに記録
-            const sosLog = document.getElementById('sosLog');
-            sosLog.innerHTML += `
-                <p>緊急SOS発信: ${new Date().toLocaleString()}</p>
-            `;
-            
-            alert('緊急通知を送信しました');
-        } catch (error) {
-            console.error('通知送信エラー', error);
-            alert('通知送信に失敗しました');
-        }
-    });
-
-    // 既存の管理機能関数は以前のコードから変更なし
-    function initializeAdminPanel() {
-        // 児童情報生成、ファイルアップロードなどの処理
-        // ...
-    }
+    // 他の既存のイベントリスナーは省略
 });
